@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro</title>
+<!-- Bootstrap CDN -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- FontAwesome CDN para os ícones -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<style>
+    body {
+    background-image: url('./um-fundo-colorido-de-um-fundo-escuro-com-luzes-multicoloridas_1081462-33996.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    }
+    .overlay {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .btn-custom {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-custom:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    }
+    .form-group i {
+    position: absolute;
+    top: 38px;
+    left: 15px;
+    color: #6c757d;
+    }
+    .form-control {
+    padding-left: 40px;
+    }
+    .concordo-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    .concordo-btn.active {
+    background-color: #28a745;
+    }
+    .concordo-btn:not(.active):hover {
+    background-color: #0056b3;
+    }
+    .concordo-text {
+    font-weight: bold;
+    color: #28a745;
+    }
+</style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="overlay">
+        <h2 class="text-center mb-4">Cadastro de Usuário</h2>
+        <form onsubmit="return verificarConcordancia()">
+            <div class="form-group position-relative">
+            <i class="fas fa-user"></i>
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
+            </div>
+            <div class="form-group position-relative">
+            <i class="fas fa-envelope"></i>
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+            </div>
+            <div class="form-group position-relative">
+            <i class="fas fa-phone"></i>
+            <label for="telefone">Telefone</label>
+            <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone" required>
+            </div>
+            <div class="form-group text-center">
+            <button type="button" id="concordoBtn" class="concordo-btn" onclick="ativarConcordancia()">Eu concordo com os termos</button>
+            <p id="concordoTexto" class="concordo-text mt-2 d-none">Concordância Ativada!</p>
+            </div>
+            <button type="submit" id="enviarBtn" class="btn btn-custom btn-block" disabled>Enviar</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- JavaScript para Verificar Concordância -->
+<script>
+    function ativarConcordancia() {
+    const concordoBtn = document.getElementById('concordoBtn');
+    const enviarBtn = document.getElementById('enviarBtn');
+    const concordoTexto = document.getElementById('concordoTexto');
+
+      // Alterna entre as classes 'active' e 'disabled'
+    if (!concordoBtn.classList.contains('active')) {
+        concordoBtn.classList.add('active');
+        concordoTexto.classList.remove('d-none');
+        enviarBtn.disabled = false; // Habilita o botão de envio
+    } else {
+        concordoBtn.classList.remove('active');
+        concordoTexto.classList.add('d-none');
+        enviarBtn.disabled = true; // Desabilita o botão de envio
+    }
+    }
+</script>
+</body>
+</html>
